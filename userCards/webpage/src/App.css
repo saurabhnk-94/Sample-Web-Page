@@ -1,0 +1,4 @@
+.displayText {
+    display: flex;
+    flex-direction: column;
+}
