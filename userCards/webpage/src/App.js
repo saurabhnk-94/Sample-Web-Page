@@ -16,12 +16,11 @@ import { connect } from "react-redux";
 import * as action from "./store/actions/action";
 
 class App extends Component {
-
-  deleteItem = (id) => {
-    const updatedList = this.props.user.filter(item => item.id !== id)
+  deleteItem = id => {
+    const updatedList = this.props.user.filter(item => item.id !== id);
     this.props.updateUserData(updatedList);
-  } 
-  
+  };
+
   componentDidMount() {
     this.props.getUserData();
   }
@@ -32,33 +31,26 @@ class App extends Component {
       <div className="App">
         {this.props.user
           ? this.props.user.map((items, index) => (
-              <MDBCol key={index}>
-                <MDBCard style={{ width: "22rem" }}>
-                  <MDBCardImage
+              <div className="card-details" key={index}>
+                <div className="card-body">
+                  <img
                     className="img-fluid"
                     src={items._links.avatar.href}
                     waves
                   />
-                  <MDBCardBody>
-                    <MDBCardTitle>Card title</MDBCardTitle>
-                    <div className="displayText">
-                      <label>
-                        First Name: {items.first_name}
-                      </label>
-                      <label>
-                        Last Name: {items.last_name}
-                      </label>
-                      <label>
-                        Gender: {items.gender}
-                      </label>
-                      <label>
-                        DOB:{items.dob}
-                      </label>
-                    </div>
-                    <MDBBtn onClick={() => this.deleteItem(items.id)}>Delete</MDBBtn>
-                  </MDBCardBody>
-                </MDBCard>
-              </MDBCol>
+                </div>
+
+                <h2>User Details</h2>
+                <div className="displayText">
+                  <label>First Name: {items.first_name}</label>
+                  <label>Last Name: {items.last_name}</label>
+                  <label>Gender: {items.gender}</label>
+                  <label>DOB:{items.dob}</label>
+                </div>
+                <button onClick={() => this.deleteItem(items.id)}>
+                  Delete
+                </button>
+              </div>
             ))
           : null}
       </div>
@@ -75,7 +67,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getUserData: () => dispatch(action.getUserData()),
-    updateUserData: (updatedUserDetails) => dispatch(action.deleteItem(updatedUserDetails))
+    updateUserData: updatedUserDetails =>
+      dispatch(action.deleteItem(updatedUserDetails))
   };
 };
 
