@@ -8,7 +8,7 @@ Displayed the details using cards and is wrapped inside the screen width.
 
 Clone this repository:
 ```
-git clone https://github.com/saurabhnk-94/sampleWebPage.git
+git clone https://github.com/saurabhnk-94/Sample-Web-Page.git
 ```
 Get inside the project: 
 ```cd userCards```
